@@ -2,7 +2,9 @@ language: julia
 sudo: required
 dist: trusty
 julia:
-  - 0.6
+  - 0.7
+  - 1.0
+  - 1.1
 notifications:
   email: false
 before_install:
@@ -11,4 +13,4 @@ before_install:
 #  - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 #  - julia --check-bounds=yes -e 'Pkg.clone(pwd()); Pkg.build("GaussianProcesses2"); Pkg.test("GaussianProcesses2"; coverage=true)'
 after_success:
-  - julia -e 'cd(Pkg.dir("GaussianProcesses2")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+  - julia -e 'import Pkg; cd(Pkg.dir("GaussianProcesses2")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
